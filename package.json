@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "npx http-server . -p 3000 -o",
-    "build": "echo 'Building static files...' && mkdir -p dist && cp -r * dist/",
+    "build": "echo 'Static files ready for deployment'",
     "test": "npm run test:a11y && npm run test:visual",
     "test:a11y": "npx axe-core index.html --output a11y-report.json",
     "test:a11y-cli": "npx pa11y http://localhost:3000 --reporter json > pa11y-report.json",
@@ -61,4 +61,4 @@
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
   }
-} 
+}
