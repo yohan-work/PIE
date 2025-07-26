@@ -1,15 +1,8 @@
 {
   "version": 2,
   "name": "pie-automation-project",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "routes": [
     {
       "src": "/(.*)",
@@ -36,11 +29,6 @@
       ]
     }
   ],
-  "functions": {
-    "scripts/generate-report.js": {
-      "memory": 512
-    }
-  },
   "env": {
     "NODE_ENV": "production"
   },
