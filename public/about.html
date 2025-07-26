@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PIE 프로젝트 소개 - 자동화 테스트 데모" />
+    <title>PIE 프로젝트 소개</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <style>
+      .about-hero {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .feature-highlight {
+        background: var(--surface-color);
+        padding: 3rem 0;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        border-left: 4px solid var(--primary-color);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        display: block;
+      }
+
+      .stat-label {
+        color: var(--text-light);
+        margin-top: 0.5rem;
+      }
+
+      .timeline {
+        background: white;
+        padding: 3rem;
+        margin: 2rem 0;
+        border-radius: 12px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .timeline-item {
+        display: flex;
+        align-items: center;
+        margin: 2rem 0;
+        padding: 1rem;
+        border-left: 3px solid var(--primary-color);
+        background: var(--surface-color);
+        border-radius: 0 8px 8px 0;
+      }
+
+      .timeline-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .cta-section {
+        background: var(--primary-color);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .test-elements {
+        margin: 2rem 0;
+      }
+
+      .accessibility-test {
+        background: #f0f8ff;
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner">
+      <nav role="navigation" aria-label="메인 네비게이션">
+        <div class="nav-container">
+          <h1><a href="index.html" style="text-decoration: none; color: inherit">PIE 프로젝트</a></h1>
+          <ul class="nav-menu">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="about.html" aria-current="page">소개</a></li>
+            <li><a href="#features">특징</a></li>
+            <li><a href="#contact">연락처</a></li>
+          </ul>
+          <button class="theme-toggle" aria-label="다크모드 토글" type="button">🌙</button>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">
+      <section class="about-hero">
+        <div class="container">
+          <h2>PIE 프로젝트란?</h2>
+          <p class="lead">Perfect Integration & Excellence</p>
+          <p>Git 커밋부터 접근성 리포트까지, 완벽한 자동화를 추구하는 프로젝트입니다.</p>
+        </div>
+      </section>
+
+      <section class="feature-highlight">
+        <div class="container">
+          <h2>📊 프로젝트 통계</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-number">100%</span>
+              <div class="stat-label">자동화율</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">15+</span>
+              <div class="stat-label">테스트 시나리오</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">3</span>
+              <div class="stat-label">브라우저 지원</div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">99+</span>
+              <div class="stat-label">성능 점수</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="timeline">
+        <div class="container">
+          <h2>🚀 자동화 워크플로우</h2>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">📝</div>
+            <div>
+              <h3>1. Git Commit</h3>
+              <p>코드 변경사항을 GitHub에 푸시하면 자동으로 파이프라인이 시작됩니다.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">⚙️</div>
+            <div>
+              <h3>2. GitHub Actions</h3>
+              <p>코드 품질 검사, 린팅, 포맷팅 검증을 자동으로 수행합니다.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">🚀</div>
+            <div>
+              <h3>3. 자동 배포</h3>
+              <p>Vercel을 통해 미리보기 또는 프로덕션 환경에 자동 배포됩니다.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">📸</div>
+            <div>
+              <h3>4. 스냅샷 테스트</h3>
+              <p>Playwright로 UI 변경사항을 자동 감지하고 스크린샷을 비교합니다.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">♿</div>
+            <div>
+              <h3>5. 접근성 검사</h3>
+              <p>axe-core와 Pa11y로 WCAG 가이드라인 준수를 자동 검증합니다.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">📊</div>
+            <div>
+              <h3>6. 리포트 생성</h3>
+              <p>모든 테스트 결과를 종합하여 시각적 리포트를 자동 생성합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="test-elements">
+        <div class="container">
+          <h2>🧪 접근성 테스트 요소들</h2>
+
+          <div class="accessibility-test">
+            <h3>폼 테스트</h3>
+            <form class="demo-form" style="max-width: 400px">
+              <div class="form-group">
+                <label for="test-name">이름 (필수)</label>
+                <input type="text" id="test-name" name="test-name" required aria-describedby="name-help" />
+                <small id="name-help">실명을 입력해주세요</small>
+              </div>
+
+              <div class="form-group">
+                <label for="test-feedback">피드백</label>
+                <textarea
+                  id="test-feedback"
+                  name="test-feedback"
+                  rows="3"
+                  placeholder="프로젝트에 대한 의견을 남겨주세요"
+                ></textarea>
+              </div>
+
+              <fieldset>
+                <legend>선호하는 테스트 도구</legend>
+                <label>
+                  <input type="radio" name="tool" value="playwright" />
+                  Playwright
+                </label>
+                <label>
+                  <input type="radio" name="tool" value="cypress" />
+                  Cypress
+                </label>
+                <label>
+                  <input type="radio" name="tool" value="selenium" />
+                  Selenium
+                </label>
+              </fieldset>
+
+              <button type="submit" class="btn btn-primary">피드백 전송</button>
+            </form>
+          </div>
+
+          <div class="accessibility-test">
+            <h3>이미지 및 미디어</h3>
+            <img
+              src="https://via.placeholder.com/300x200/4A90E2/FFFFFF?text=Automation"
+              alt="자동화 워크플로우 다이어그램"
+              width="300"
+              height="200"
+              style="border-radius: 8px"
+            />
+
+            <p>모든 이미지에는 적절한 alt 텍스트가 포함되어 있습니다.</p>
+          </div>
+
+          <div class="accessibility-test">
+            <h3>키보드 네비게이션 테스트</h3>
+            <div>
+              <button class="btn btn-secondary" type="button">버튼 1</button>
+              <button class="btn btn-secondary" type="button">버튼 2</button>
+              <a href="#top" class="btn btn-secondary">상단으로</a>
+            </div>
+            <p><small>Tab 키로 포커스 이동을 테스트해보세요.</small></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="cta-section">
+        <div class="container">
+          <h2>🎯 테스트 시작하기</h2>
+          <p>이 페이지는 자동화 파이프라인 테스트를 위해 제작되었습니다.</p>
+          <div class="cta-buttons">
+            <a href="index.html" class="btn btn-secondary">메인 페이지로</a>
+            <button class="btn btn-primary" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+              맨 위로
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container">
+        <p>&copy; 2024 PIE 프로젝트. 자동화 테스트 데모용 페이지입니다.</p>
+        <div class="footer-links">
+          <a href="#privacy">개인정보처리방침</a>
+          <a href="#terms">이용약관</a>
+          <a href="#accessibility">접근성 정책</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script>
+      // 이 페이지만의 간단한 인터랙션
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('.demo-form');
+        if (form) {
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('테스트 폼이 제출되었습니다! (실제로는 처리되지 않습니다)');
+          });
+        }
+
+        // 스크롤 애니메이션
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateX(0)';
+            }
+          });
+        });
+
+        timelineItems.forEach(item => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateX(-20px)';
+          item.style.transition = 'all 0.6s ease';
+          observer.observe(item);
+        });
+      });
+    </script>
+  </body>
+</html>
