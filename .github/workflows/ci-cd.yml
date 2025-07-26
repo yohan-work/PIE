@@ -71,13 +71,15 @@ jobs:
           npx pa11y http://localhost:3000 \
             --reporter json \
             --timeout 10000 \
-            --wait 2000 > pa11y-report-index.json
+            --wait 2000 \
+            --chromium-flags="--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage" > pa11y-report-index.json
 
           # About 페이지 테스트
           npx pa11y http://localhost:3000/about.html \
             --reporter json \
             --timeout 10000 \
-            --wait 2000 > pa11y-report-about.json
+            --wait 2000 \
+            --chromium-flags="--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage" > pa11y-report-about.json
 
           # 리포트 합치기
           echo "[]" | jq '. + input + input' pa11y-report-index.json pa11y-report-about.json > pa11y-report.json
