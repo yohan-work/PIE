@@ -2,9 +2,9 @@ name: 🚀 CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 env:
   NODE_VERSION: '18'
@@ -14,7 +14,7 @@ jobs:
   quality-check:
     name: 📋 Quality Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 📂 Checkout code
         uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
     name: ♿ Accessibility Test
     runs-on: ubuntu-latest
     needs: quality-check
-    
+
     steps:
       - name: 📂 Checkout code
         uses: actions/checkout@v4
@@ -67,18 +67,37 @@ jobs:
 
       - name: ♿ Run Pa11y accessibility test
         run: |
+          # 메인 페이지 테스트
           npx pa11y http://localhost:3000 \
             --reporter json \
             --timeout 10000 \
-            --wait 2000 > pa11y-report.json
-        continue-on-error: true
+            --wait 2000 > pa11y-report-index.json
+
+          # About 페이지 테스트
+          npx pa11y http://localhost:3000/about.html \
+            --reporter json \
+            --timeout 10000 \
+            --wait 2000 > pa11y-report-about.json
+
+          # 리포트 합치기
+          echo "[]" | jq '. + input + input' pa11y-report-index.json pa11y-report-about.json > pa11y-report.json
+        continue-on-error: false
 
       - name: 🔬 Run axe-core accessibility test
         run: |
+          # 메인 페이지 테스트
           npx @axe-core/cli http://localhost:3000 \
-            --output axe-report.json \
+            --output axe-report-index.json \
             --format json
-        continue-on-error: true
+
+          # About 페이지 테스트  
+          npx @axe-core/cli http://localhost:3000/about.html \
+            --output axe-report-about.json \
+            --format json
+
+          # 메인 페이지 결과를 기본으로 사용 (about 결과는 별도 확인)
+          cp axe-report-index.json axe-report.json
+        continue-on-error: false
 
       - name: 📊 Generate accessibility summary
         run: |
@@ -140,7 +159,7 @@ jobs:
     name: 📸 Visual Regression Test
     runs-on: ubuntu-latest
     needs: quality-check
-    
+
     steps:
       - name: 📂 Checkout code
         uses: actions/checkout@v4
@@ -182,7 +201,7 @@ jobs:
     name: ⚡ Performance Test
     runs-on: ubuntu-latest
     needs: quality-check
-    
+
     steps:
       - name: 📂 Checkout code
         uses: actions/checkout@v4
@@ -235,7 +254,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     needs: [accessibility-test, visual-test, performance-test]
-    
+
     steps:
       - name: 📂 Checkout code
         uses: actions/checkout@v4
@@ -270,19 +289,19 @@ jobs:
         with:
           script: |
             const deploymentUrl = '${{ steps.vercel-deploy.outputs.url }}';
-            
+
             const comment = `## 🚀 미리보기 배포 완료
-            
+
             **배포 URL**: ${deploymentUrl}
-            
+
             ### 📊 테스트 결과
             - ✅ 코드 품질 검사 완료
             - ♿ 접근성 테스트 실행됨
             - 📸 스냅샷 테스트 실행됨  
             - ⚡ 성능 테스트 실행됨
-            
+
             자세한 결과는 Actions 탭에서 확인하세요.`;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -297,7 +316,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: [accessibility-test, visual-test, performance-test]
     environment: production
-    
+
     steps:
       - name: 📂 Checkout code
         uses: actions/checkout@v4
@@ -330,7 +349,7 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
     needs: [accessibility-test, visual-test, performance-test]
-    
+
     steps:
       - name: 📂 Checkout code
         uses: actions/checkout@v4
@@ -418,4 +437,4 @@ jobs:
         with:
           name: comprehensive-report
           path: comprehensive-report.json
-          retention-days: 90 
+          retention-days: 90

@@ -94,6 +94,14 @@
         border-radius: 8px;
         margin: 1rem 0;
       }
+
+      /* 의도적인 접근성 오류 스타일 */
+      .low-contrast {
+        color: #ccc;
+        background-color: #ddd;
+        padding: 10px;
+        margin: 10px 0;
+      }
     </style>
   </head>
   <body>
@@ -243,7 +251,7 @@
           </div>
 
           <div class="accessibility-test">
-            <h3>이미지 및 미디어</h3>
+            <h3>이미지 및 미디어 (접근성 오류 포함)</h3>
             <img
               src="https://via.placeholder.com/300x200/4A90E2/FFFFFF?text=Automation"
               alt="자동화 워크플로우 다이어그램"
@@ -252,7 +260,35 @@
               style="border-radius: 8px"
             />
 
-            <p>모든 이미지에는 적절한 alt 텍스트가 포함되어 있습니다.</p>
+            <!-- 접근성 오류 1: alt 속성 누락 -->
+            <img
+              src="https://via.placeholder.com/200x150/FF0000/FFFFFF?text=ERROR"
+              width="200"
+              height="150"
+              style="border-radius: 8px; margin: 10px"
+            />
+
+            <!-- 접근성 오류 2: 색상 대비율 부족 -->
+            <div class="low-contrast">이 텍스트는 색상 대비율이 부족합니다 (접근성 오류).</div>
+
+            <!-- 접근성 오류 3: 키보드 접근 불가능한 요소 -->
+            <div
+              onclick="alert('클릭됨')"
+              style="background: #007bff; color: white; padding: 10px; margin: 10px; cursor: pointer"
+            >
+              키보드로 접근할 수 없는 클릭 가능한 요소 (접근성 오류)
+            </div>
+
+            <!-- 접근성 오류 4: 빈 링크 -->
+            <a href="#"></a>
+
+            <p>위 요소들에는 의도적인 접근성 문제가 있습니다:</p>
+            <ul>
+              <li>이미지 alt 속성 누락</li>
+              <li>색상 대비율 부족</li>
+              <li>키보드 접근성 없는 클릭 요소</li>
+              <li>빈 링크</li>
+            </ul>
           </div>
 
           <div class="accessibility-test">
