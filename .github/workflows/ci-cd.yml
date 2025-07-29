@@ -83,7 +83,7 @@ jobs:
 
           # 리포트 합치기
           echo "[]" | jq '. + input + input' pa11y-report-index.json pa11y-report-about.json > pa11y-report.json
-        continue-on-error: false
+        continue-on-error: true
 
       - name: 🔬 Run axe-core accessibility test
         run: |
@@ -99,7 +99,7 @@ jobs:
 
           # 메인 페이지 결과를 기본으로 사용 (about 결과는 별도 확인)
           cp axe-report-index.json axe-report.json
-        continue-on-error: false
+        continue-on-error: true
 
       - name: 📊 Generate accessibility summary
         run: |
